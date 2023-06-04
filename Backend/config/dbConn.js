@@ -11,8 +11,8 @@ const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'RGM Rentals',
-  password: '12345',
+  database: 'properties',
+  password: 'Given@20/09/03',
   port: 5432,
 })
 
@@ -40,7 +40,7 @@ const getlandlordById = (request, response) => {
 const createlandlord = (request, response) => {
     const { username, email, password } = request.body
   
-    pool.query('INSERT INTO landlord (username, email, password) VALUES ($1, $2) RETURNING *', [username, email, password], (error, results) => {
+    pool.query('INSERT INTO landlord (username, email, password) VALUES ($1, $2, $3) RETURNING *', [username, email, password], (error, results) => {
       if (error) {
         throw error
       }
@@ -53,7 +53,7 @@ const updatelandlord = (request, response) => {
     const { username, email, password} = request.body
   
     pool.query(
-      'UPDATE landlord SET name = $1, email = $2 WHERE id = $3',
+      'UPDATE landlord SET username = $1, email = $2, password = $3 WHERE id = $4',
       [username, email, password,id],
       (error, results) => {
         if (error) {
@@ -81,4 +81,5 @@ module.exports = {
     createlandlord,
     updatelandlord,
     deletelandlord,
-  }
+}
+
