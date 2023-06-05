@@ -1,85 +1,31 @@
-// const Pool = require('pg').Pool
-// const pool = new Pool({
-//   user: 'me',
-//   host: 'localhost',
-//   database: 'api',
-//   password: 'password',
-//   port: 5432,
-// })
+require('dotenv').config();
 
-const Pool = require('pg').Pool
+const Pool = require('pg').Pool;
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'properties',
-  password: 'Given@20/09/03',
-  port: 5432,
+  password: process.env.POSTGRES_PASS,
+  port: process.env.PORT,
 })
 
-const getlandlord = (request, response) => {
-    pool.query('SELECT * FROM landlord ORDER BY id ASC', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-}
+//checking if our database is connected to the backend
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('Error acquiring client', err.stack);
+    return;
+  }
+  client.query('SELECT NOW()', (err, result) => {
+    release();
+    if (err) {
+      console.error('Error executing query', err.stack);
+      return;
+    }
+    console.log('Connected to the database:', result.rows[0].now);
+  });
+});
 
-const getlandlordById = (request, response) => {
-    const id = parseInt(request.params.id)
-  
-    pool.query('SELECT * FROM landlord WHERE id = $1', [id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-}
+module.exports = pool
 
 
-const createlandlord = (request, response) => {
-    const { username, email, password } = request.body
-  
-    pool.query('INSERT INTO landlord (username, email, password) VALUES ($1, $2, $3) RETURNING *', [username, email, password], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(201).send(`Landlord added with ID: ${results.rows[0].id}`)
-    })
-}
-
-const updatelandlord = (request, response) => {
-    const id = parseInt(request.params.id)
-    const { username, email, password} = request.body
-  
-    pool.query(
-      'UPDATE landlord SET username = $1, email = $2, password = $3 WHERE id = $4',
-      [username, email, password,id],
-      (error, results) => {
-        if (error) {
-          throw error
-        }
-        response.status(200).send(`Landlord modified with ID: ${id}`)
-      }
-    )
-}
-
-const deletelandlord = (request, response) => {
-    const id = parseInt(request.params.id)
-  
-    pool.query('DELETE FROM landlord WHERE id = $1', [id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(`Landlord deleted with ID: ${id}`)
-    })
-}
-
-module.exports = {
-    getlandlord,
-    getlandlordById,
-    createlandlord,
-    updatelandlord,
-    deletelandlord,
-}
 

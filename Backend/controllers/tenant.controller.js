@@ -1,11 +1,4 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'properties',
-  password: 'Given@20/09/03',
-  port: 5432,
-})
+const client = require('../config/dbConn');
 
 //Tenants
 const gettenant = (request, response) => {

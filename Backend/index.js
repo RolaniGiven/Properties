@@ -1,9 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const db = require('./config/dbConn')
-const dbtenant = require('./config/dbConnTenants')
-const port = 3000
+//const db = require('./models');
+
+
+const landlordRoutes = require('./routes/landlord.route');
 
 app.use(bodyParser.json())
 app.use(
@@ -16,18 +17,11 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres APIS' })
 })
 
-app.get('/users', db.getlandlord)
-app.get('/users/:id', db.getlandlordById)
-app.post('/users', db.createlandlord)
-app.put('/users/:id', db.updatelandlord)
-app.delete('/users/:id', db.deletelandlord)
 
-app.get('/tenant', dbtenant.gettenant)
-app.get('/tenant/:id', dbtenant.gettenantById)
-app.post('/tenant', dbtenant.createtenant)
-app.put('/tenant/:id', dbtenant.updatetenant)
-app.delete('/tenant/:id', dbtenant.deletetenant)
+//require('./routes/landlord.route')(app);
+app.use('/',landlordRoutes);
 
+const port = 3000;
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
