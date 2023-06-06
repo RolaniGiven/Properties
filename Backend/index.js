@@ -5,6 +5,8 @@ const app = express()
 
 
 const landlordRoutes = require('./routes/landlord.route');
+const tenantRoutes = require('./routes/tenants.route');
+const properties = require('./routes/myproperties.route');
 
 app.use(bodyParser.json())
 app.use(
@@ -20,6 +22,8 @@ app.get('/', (request, response) => {
 
 //require('./routes/landlord.route')(app);
 app.use('/',landlordRoutes);
+app.use('/',tenantRoutes);
+app.use('/',properties);
 
 const port = 3000;
 

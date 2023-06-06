@@ -3,7 +3,7 @@ const pool = require('../config/dbConn');
 
 
 const getlandlord = (request, response) => {
-    pool.query('SELECT * FROM landlord', (error, results) => {
+    pool.query('SELECT * FROM landlord ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -14,7 +14,7 @@ const getlandlord = (request, response) => {
 const getlandlordById = (request, response) => {
 
 
-    console.log(request.params.id)
+    // console.log(request.params.id)
     const id = parseInt(request.params.id)
   
     pool.query('SELECT * FROM landlord WHERE id = $1', [id], (error, results) => {

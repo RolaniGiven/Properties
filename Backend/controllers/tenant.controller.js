@@ -1,4 +1,4 @@
-const client = require('../config/dbConn');
+const pool = require('../config/dbConn');
 
 //Tenants
 const gettenant = (request, response) => {
