@@ -4,7 +4,7 @@ const app = express()
 //const db = require('./models');
 
 
-const landlordRoutes = require('./routes/landlord.route');
+const propowner = require('./routes/propowner.route');
 const tenantRoutes = require('./routes/tenants.route');
 const properties = require('./routes/myproperties.route');
 
@@ -21,7 +21,7 @@ app.get('/', (request, response) => {
 
 
 //require('./routes/landlord.route')(app);
-app.use('/',landlordRoutes);
+app.use('/',propowner);
 app.use('/',tenantRoutes);
 app.use('/',properties);
 
