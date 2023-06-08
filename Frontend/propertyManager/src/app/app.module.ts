@@ -9,6 +9,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HpTenantComponent } from './pages/hp-tenant/hp-tenant.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +27,9 @@ import { HpTenantComponent } from './pages/hp-tenant/hp-tenant.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
