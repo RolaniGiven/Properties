@@ -44,17 +44,27 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
 .navbar{
-    background: rgb(63,94,251);
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); 
+    // background: rgb(63,94,251);
+    // background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); 
 }
 
 .collapse{
-    background: rgb(63,94,251);
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); 
+    // background: rgb(63,94,251);
+    // background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); 
 }
 
 
 .list-group-item{
-    background: rgb(63,94,251);
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); 
+    // background: rgb(63,94,251);
+    // background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); 
 }
+
+.slider{
+   
+}
+
+.dashboard {
+    position: fixed;
+    bottom: 0;
+    height: 75%; /* Set the height to 75% of the viewport height */
+  }

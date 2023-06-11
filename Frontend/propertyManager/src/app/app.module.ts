@@ -11,6 +11,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HpTenantComponent } from './pages/hp-tenant/hp-tenant.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './componentsT/dashboard/dashboard.component';
+import { SliderComponent } from './componentsT/slider/slider.component';
+import { HpLandlordComponent } from './pages/hp-landlord/hp-landlord.component';
+import { TenantsComponent } from './componentsL/tenants/tenants.component';
+import { ReportsComponent } from './componentsL/reports/reports.component';
+import { PropertiesComponent } from './componentsL/properties/properties.component';
+import { DashboardLComponent } from './componentsL/dashboard-l/dashboard-l.component';
 
 
 
@@ -23,6 +30,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     HpTenantComponent,
+    DashboardComponent,
+    SliderComponent,
+    HpLandlordComponent,
+    TenantsComponent,
+    ReportsComponent,
+    PropertiesComponent,
+    DashboardLComponent
     
   ],
   imports: [
