@@ -26,15 +26,27 @@ const getpropownerById = (request, response) => {
 
 
 const createpropowner = (request, response) => {
-    const { username, email, password } = request.body
-  
-    pool.query('INSERT INTO propowner (username, email, password) VALUES ($1, $2, $3) RETURNING *', [username, email, password], (error, results) => {
+  const { username, email, password } = request.body;
+
+  // Input validation
+  if (!username || !email || !password) {
+    return response.status(400).send('Missing required fields');
+  }
+
+  // Authentication check (e.g., check if user is authorized to perform this action)
+
+  pool.query(
+    'INSERT INTO propowner (username, email, password) VALUES ($1, $2, $3) RETURNING *',
+    [username, email, password],
+    (error, results) => {
       if (error) {
-        throw error
+        throw error;
       }
-      response.status(201).send(`Landlord added with ID: ${results.rows[0].ownerid}`)
-    })
-}
+      response.status(201).send(`Landlord added with ID: ${results.rows[0].ownerid}`);
+    }
+  );
+};
+
 
 const updatepropowner = (request, response) => {
     const ownerid = parseInt(request.params.id)

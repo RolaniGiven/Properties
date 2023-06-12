@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HpTenantComponent } from './pages/hp-tenant/hp-tenant.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './componentsT/dashboard/dashboard.component';
 import { SliderComponent } from './componentsT/slider/slider.component';
 import { HpLandlordComponent } from './pages/hp-landlord/hp-landlord.component';
@@ -44,6 +44,7 @@ import { DashboardLComponent } from './componentsL/dashboard-l/dashboard-l.compo
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

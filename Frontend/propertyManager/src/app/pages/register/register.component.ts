@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { PropownerService } from '../../services/propowner.service';
 
 @Component({
   selector: 'app-register',
@@ -7,21 +8,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   form: any = {
     username: null,
     email: null,
     password: null
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private propownerService: PropownerService) { }
 
   ngOnInit(): void {
+    
   }
 
   onSubmit(): void {
     const { username, email, password } = this.form;
-    
+
     // Create an object with the user details
     const user = {
       username,
@@ -29,8 +30,8 @@ export class RegisterComponent implements OnInit {
       password
     };
 
-    // Send the user details to the backend API
-    this.http.post('', user)
+    // Call the service method to create the property owner
+    this.propownerService.createPropOwner(user)
       .subscribe(
         response => {
           // Handle the success response from the backend
